@@ -1,0 +1,28 @@
+{
+  "name": "neighborhood-map",
+  "version": "1.0.0",
+  "description": "a single page application using knockout and google api map",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "neighborhood",
+    "map",
+    "knockout.js"
+  ],
+  "author": "melbourne.lipardo",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "knockout": "^3.4.0",
+    "requirejs": "^2.2.0",
+    "requirejs-plugins": "^1.0.2"
+  }
+}

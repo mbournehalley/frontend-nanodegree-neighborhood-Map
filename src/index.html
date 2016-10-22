@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="a beer map markers using a knockoutjs framework">
+  <meta name="author" content="mbournehalley">
+  <title>Neighborhood Map</title>
+  <!-- Bootstrap/Custom styles for this template -->
+  <link rel="stylesheet" href="vendor/bootstrap.min.css">
+  <link rel="stylesheet" href="css/neighborhood-map.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+</head>
+<body>
+  <section id="beerApp">
+    <!-- Side Bar Nav -->
+    <section id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+        x
+      </a>
+      <div id="search-input" class="input-group">
+        <input type="text" class="form-control" placeholder="Search…" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+        <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></span>
+      </div>
+      <ul id="beer-list" data-bind="foreach: beers">
+        <li>
+          <label data-bind="text: name"></label>
+        </li>
+      </ul>
+    </section>
+    <!-- /.Side Bar Nav -->
+
+    <!-- Main -->
+    <section id="main">
+      <div id="menu">
+        <span onclick="openNav()">☰ Beer Map Locations</span>
+      </div>
+
+      <!-- Map -->
+      <div id="map-canvas"></div>
+      <!-- /.Map -->
+
+    </section>
+    <!-- /.Main -->
+  </section>
+  <footer class="footer-map">
+    <div class="container">
+      <p>Designed and built by @mbournehalley. Maintained by @mbournehalley.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Open hamburger nav
+    function openNav() {
+      document.getElementById("mySidenav")
+        .style.width = "350px";
+      document.getElementById("main")
+        .style.marginLeft = "350px";
+    }
+
+    // Close hamburger nav
+    function closeNav() {
+      document.getElementById("mySidenav")
+        .style.width = "0";
+      document.getElementById("main")
+        .style.marginLeft = "0";
+    }
+  </script>
+
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script>window.jQuery || document.write('<script src="vendor/jQuery.js"><\/script>')</script>
+  <script data-main="js/app" src="../node_modules/requirejs/require.js"></script>
+  <!-- <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCz0yZwOoeyD2E89auhjZTXTdD9v-E6QZE&v=3&callback=initMap"></script> -->
+</body>
+</html>
