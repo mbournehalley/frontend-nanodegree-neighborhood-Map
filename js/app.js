@@ -2,7 +2,7 @@ require.config({
   waitSeconds: 120, //make sure it is enough to load all gmaps scripts
   paths: {
     knockout: '../../node_modules/knockout/build/output/knockout-latest',
-    jquery: '/src/vendor/jQuery',
+    jquery: '/vendor/jQuery',
     async: '/node_modules/requirejs-plugins/src/async' //alias to plugin
   }
 });
@@ -92,6 +92,12 @@ require([
 
     initialize();
 
+    /**
+     * @name initialize
+     * @desc This initializes the Application
+     * @param none
+     * @returns none
+     */
     function initialize () {
       var result,
           venue;
