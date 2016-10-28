@@ -10,13 +10,13 @@ require.config({
 require([
   'knockout',
   'viewmodels/BeerMap',
-   'jquery',
+  'jquery',
   'async!https://maps.googleapis.com/maps/api/js?key=AIzaSyCz0yZwOoeyD2E89auhjZTXTdD9v-E6QZE&v=3'
 ], function(ko, BeerViewModel, $) {
   'use strict';
 
-  var CLIENT_ID = "DBCADBINS32UBNKBXLONT4P2DOOIZ0PEJFQFADWRHYIPUPAT",
-      CLIENT_SECRET = "C2EP5DF105X4JKRD2TXJQOJVON2JVNTJNGVSIGGTMPVUPQE2";
+  var CLIENT_ID = 'DBCADBINS32UBNKBXLONT4P2DOOIZ0PEJFQFADWRHYIPUPAT',
+      CLIENT_SECRET = 'C2EP5DF105X4JKRD2TXJQOJVON2JVNTJNGVSIGGTMPVUPQE2';
   // 10 List of List of Beer locations
   var Beers = [{
       "name": "MIKKELLER BAR",
@@ -105,17 +105,30 @@ require([
       Beers.forEach(function(beer) {
         result = getFourSquareData(beer.lat, beer.lng);
         result.done(getResultCompleted);
+        result.fail(errorResult);
 
         /**
          * @name getResultCompleted
          * @desc it inserts the data on the beer objects
          * @param {object} - data response json
-        */
+         */
         function getResultCompleted(data) {
           venue = data.response.venues[0];
-          beer.summary = (venue.hereNow.summary === undefined) ? "No one here": venue.hereNow.summary;
-          beer.formattedPhone = (venue.contact.formattedPhone === undefined) ? "No Contacts" : venue.contact.formattedPhone;
-          beer.twitter = (venue.contact.twitter === undefined) ? "No Twitter Account": venue.contact.twitter;
+          if (venue !== null || venue !== undefined ) {
+            beer.summary = (venue.hereNow.summary === undefined) ? 'No one here': venue.hereNow.summary;
+            beer.formattedPhone = (venue.contact.formattedPhone === undefined) ? 'No Contacts' : venue.contact.formattedPhone;
+            beer.twitter = (venue.contact.twitter === undefined) ? 'No Twitter Account': venue.contact.twitter;
+          } else {
+            alert('Oh no, No data available!');
+          }
+        }
+
+        /**
+         * @name errorResult
+         * @desc it displays an alert box.
+         */
+        function errorResult() {
+          alert('Oh no, something went wrong!');
         }
       });
     }
@@ -138,4 +151,8 @@ require([
     }
     // bind a new instance of our view model to the page
     ko.applyBindings(new BeerViewModel(Beers || []));
+
+}, function (err) {
+   //The errback, error callback
+   alert('Oh no, some modules were not loaded!');
 });

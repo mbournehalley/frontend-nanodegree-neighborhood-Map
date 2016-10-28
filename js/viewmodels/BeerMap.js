@@ -38,6 +38,7 @@ define([
     }));
     self.query = ko.observable('');
     self.search = search;
+    self.openInfoContent = openInfoContent;
     self.query.subscribe(self.search);// subscribe the search to query
 
     init();
@@ -75,16 +76,19 @@ define([
 
      // Add a listener and api foursquare request
     function markerAddListener (marker, beer) {
-      var info_content;
+      var infoContent;
 
       marker.addListener('click', function() {
 
         this.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout(function() {
           marker.setAnimation(null);
-        }, 2000);
+        }, 1400);
 
-        info_content =
+        map.setZoom(14);
+        map.setCenter(marker.getPosition());
+
+        infoContent =
         '<div id="infowindow">' +
           '<div class="content">' +
             '<div class="name text-center">' +
@@ -105,7 +109,7 @@ define([
                 beer.twitter + '</div>' +
           '</div>' +
         '</div>';
-        infowindow.setContent(info_content);
+        infowindow.setContent(infoContent);
         infowindow.open(map, marker);
       });
 
@@ -160,6 +164,11 @@ define([
     function setMarker (index) {
       markers[index].setMap(map);
       markers[index].setAnimation(google.maps.Animation.DROP);
+    }
+
+    function openInfoContent (beer) {
+      var index = beers.map(function(e) { return e.name; }).indexOf(beer.name());
+      google.maps.event.trigger(markers[index], 'click');
     }
   }
 });

@@ -13,22 +13,24 @@
   <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 <body>
-  <section id="beerApp">
+  <div id="beerApp">
     <!-- Side Bar Nav -->
-    <section id="mySidenav" class="sidenav">
+    <aside id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
         x
       </a>
       <div id="search-input" class="input-group">
         <input type="text" class="form-control" placeholder="Search…" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
-        <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-filter" aria-hidden="true"></span></span>
+        <span class="input-group-addon" id="basic-addon2">
+            <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+            </span>
       </div>
       <ul id="beer-list" data-bind="foreach: beers">
-        <li>
+        <li data-bind="click: $parent.openInfoContent">
           <label data-bind="text: name"></label>
         </li>
       </ul>
-    </section>
+    </aside>
     <!-- /.Side Bar Nav -->
 
     <!-- Main -->
@@ -43,7 +45,7 @@
 
     </section>
     <!-- /.Main -->
-  </section>
+  </div>
   <footer class="footer-map">
     <div class="container">
       <p>Designed and built by @mbournehalley. Maintained by @mbournehalley.</p>
